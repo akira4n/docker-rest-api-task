@@ -1,11 +1,14 @@
 require("dotenv").config();
 const express = require("express");
+const noteRoutes = require("./src/routes/noteRoutes");
 const initializeDatabase = require("./src/config/initDB");
 
 const app = express();
 const port = process.env.APP_PORT || 3000;
 
 app.use(express.json());
+
+app.use("/api/notes", noteRoutes);
 
 app.get("/", (_, res) => {
   res.status(200).json({
